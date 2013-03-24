@@ -35,7 +35,7 @@ $
 \hat{p} := X/n
 $, and we have the Bayes estimate for a uniform prior,
 $
-\hat{p}_B := (X+1)/(n+2)
+p_B := (X+1)/(n+2)
 $. For $n=20$, find for what values of $p$ each of these has smaller mean-squared error.
 \ProbE
 
@@ -51,11 +51,23 @@ $$
 \section{Bickel and Docksum, p.203, problem 2}
 \ProbS
 Note: Jensen's inequality also holds for conditional expectations.
+
+Let $A=R$. We shall say a loss function is \emph{convex}, if
+$l(\theta, \alpha a_0 + (1-\alpha)a_1) \leq
+\alpha l(\theta, a_0) + (1-\alpha)l(\theta, a_1)$,
+for any $a_0, a_1, \theta, 0<\alpha<1$.
+Suppose that there is an unbiased estimate $\delta$ of $q(\theta)$
+and that $T(\mathbf{X})$ is sufficient.
+Show that if $l(\theta, a)$ is convex and
+$\delta^{*}(\mathbf{X}) = E(\delta(\mathbf{X}) | t(\mathbf{X}))$,
+then $R(\theta, \delta^{*}) \leq R(\theta, \delta)$.
+
+\emph{Hint}: Use \emph{Jensen's inequality}: If $g$ is a convex function and $X$ is a random variable, then $E(g(X)) \geq g(E(X))$.
 \ProbE
 
 \section{Problem 4}
 \ProbS
-Consider the family of $N(\theta, 1)$ distributions with the cauchy prior density
+Consider the family of $N(\theta, 1)$ distributions with the Cauchy prior density
 $$
 \pi(\theta) = \frac{1}{\pi(1+\theta^2)},
 $$
