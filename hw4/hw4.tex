@@ -66,7 +66,7 @@ Show that the expectation of $|\theta|$ with respect to the prior is infinite, b
 \ProbS
 The Jeffreys prior (Bickel and Docksum, p. 203, Problem 15, but with a part omitted and others added). (By the way this prior was invented by H. Jeffreys, so it should not be called ``Jeffrey's prior.'')
 Suppose we have a parametric family of probability mass functions or densities with a likelihood function $f(\theta, x)$, defined for $\theta$ in an open interval $(a,b)$ where $-\infty \leq a < b \leq +\infty$.
-The \emph{Fisher information} of the family, at a given $\theta$, is given as
+The \emph{Fisher information} of the family, at a given $\theta$, is defined as
 $$
 I(\theta) = E_{\theta}[(\partial \log f(\theta, x) / \partial \theta)^2]
 $$
@@ -96,8 +96,8 @@ Bickel and Doksum, Problem 3 p. 203, parts (a) and (b), ask one to show that the
 This problem does not ask you to prove either of those things, rather, it asks you to show that the Jeffreys prior measure is equivariant, in fact, it is invariant under the kind of transformation we're considering, as follows.
 Let $j_f$ be a Jeffreys prior density as defined above with respect to $f(\theta, x)$, and let $j_g$ be the Jeffreys prior dnesity defined with respect to $g(\psi, x)$. Then show that for any $\xi, \eta$ with $u < \xi < \eta < v$, we have
 $$
-\int_{\xi}^{\eta} j_g(\psi)d\psi = \int_{h(\xi}^{h(\eta)} j_f(\theta) d\theta
-$$.
+\int_{\xi}^{\eta} j_g(\psi)d\psi = \int_{h(\xi)}^{h(\eta)} j_f(\theta) d\theta.
+$$
 \emph{Hint}: this is a change of variables in an integral, with use of the chain rule. If you prefer, do the special case in part (d) before this general case.
 \ProbE
 
@@ -113,7 +113,7 @@ Suppose we consider the same distribution as in (c) but with the exponential fam
 
 \subsection*{(e)}
 \ProbS
-In ``Information inequalities,'' Proposition 4, it is shown that if a family of distributions $P_{\theta}$ has a finite Fisher information $I_1(\theta)$ and a regularity condition (2) holds, then the Fisher information for $n$ variables with a distribution in the family also has finite Fisher information $I_{n}(\theta) = nI_1(\theta)$.
+In ``Information inequalities,'' Proposition 4, it is shown that if a family of distributions $P_{\theta}$ has a finite Fisher information $I_1(\theta)$ and a regularity condition (2) holds, then the Fisher information for $n$ i.i.d. variables with a distribution in the family also has finite Fisher information $I_{n}(\theta) = nI_1(\theta)$.
 For $X_1, \dots, X_n$ i.i.d. Bernoulli $(p)$, $S_n = X_1 + \cdots + X_n$ is a sufficient statistic, why?
 Then $S_n$ has a binomial $(n, p)$ distribution. So, check that as Bickel and Doksum say, the Jeffreys prior probability density for this distribution for any $n$ is the same as for $n=1$ found in (c).
 \ProbE
