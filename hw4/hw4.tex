@@ -137,6 +137,28 @@ then $R(\theta, \delta^{*}) \leq R(\theta, \delta)$.
 \emph{Hint}: Use \emph{Jensen's inequality}: If $g$ is a convex function and $X$ is a random variable, then $E(g(X)) \geq g(E(X))$.
 \ProbE
 
+Because $t(X)$ is sufficient, $p(X | t(X), \theta)$ does not involve $\theta$ at all. So
+$$
+E_{\theta}[\delta(X) | t(X)] =
+\int \delta(X)p(X | t(X), \theta) dX =
+\int \delta(X)p(X | t(X)) dX =
+E[ \delta(X) | t(X) ] =
+\delta^*(X)
+$$
+
+Because $l(\theta, \cdot)$ is convex for any $\theta$, and Jensen's inequality,
+$$
+R(\theta, \delta) =
+E_\theta[l(\theta, \delta(X))] =
+E_\theta[ E_\theta[l(\theta, \delta(X)) | t(X)] ] \geq
+$$
+$$
+E_\theta[l(\theta, E_\theta[\delta(X) | t(X)])] =
+E_\theta[l(\theta, \delta^*(X))] =
+R(\theta, \delta^*)
+$$
+i.e. $R(\theta, \delta^*) \leq R(\theta, \delta)$.
+
 \section{Problem 4}
 \ProbS
 Consider the family of $N(\theta, 1)$ distributions with the Cauchy prior density
