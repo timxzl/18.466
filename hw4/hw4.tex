@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage{amsmath, graphicx, amsfonts}
 \def\thestudent{Zhilei Xu (929552018)}
-\def\theprob{3}
+\def\theprob{4}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
 \pagestyle{fancy}
@@ -42,7 +42,7 @@ $
 %({B(S+r, n-S+s)} / B(r,s))
 %\frac{\Gamma(r+s)\Gamma(S+r)\Gamma(n-S+s)}{\Gamma(r)\Gamma(s)\Gamma(n+r+s)}
 $
-,\\
+\\
 hence $\pi_X(\theta)$ must be the pdf of a
 $\beta(S+r, n-S+s)$ distribution. So
 $
@@ -53,7 +53,7 @@ $
   \frac{n}{r+s+n} \cdot \frac{S}{n}
 = w \theta_0 + (1-w) \bar{X}
 $
-,\\
+\\
 where $w = \frac{r+s}{r+s+n}$,
 is the Bayes estimate of $\theta$.
 
@@ -101,22 +101,26 @@ $$
 $$
 Bias[{p}_B] = (np+1)/(n+2)-p
 = (1-2p)/(n+2),
-Bias[{p}_B]^2 = (1-p)^2/(n+2)^2
+Bias[{p}_B]^2 = (1-2p)^2/(n+2)^2
 $$
 $$
-b = MSE[{p}_B] = (1-p)[1+(n-1)p]/(n+2)^2
+b = MSE[{p}_B] = [np-np^2+1-4p+4p^2]/(n+2)^2
+=[1+p(1-p)(n-4)]/(n+2)^2
 $$
 $$
-d = [n(n+2)^2/(1-p)](a-b) = (n+2)^2 p - n[1+(n-1)p]
-= (5n+4)p-n
+d = [n(n+2)^2](a-b) = (n+2)^2 p(1-p) - n - np(1-p)(n-4) =
+$$
+$$
+p(1-p)[n^2+4n+4-n^2+4n] - n =
+p(1-p)[8n+4] - n
 $$
 Clearly when $d<0$, $\hat{p}$ has smaller MSE,
 when $d>0$, $p_B$ has smaller MSE,
 and when $d=0$, both have the same MSE.
-For $n=20$, $d=104p-20$, so
-when $0<p<\frac{20}{104} \approx 0.1923$, $\hat{p}$ has smaller MSE,
-when $1>p>\frac{20}{104} \approx 0.1923$, $p_B$ has smaller MSE,
-and when $p=\frac{20}{104} \approx 0.1923$, both have the same MSE.
+For $n=20$, $d=164p(1-p)-20 = -164p^2 + 164p - 20$, which is a quandratic polynomial of $p$, and has two roots approximately $d_0=0.14216$, $d_0=0.85784$. So:\\
+when $0 < p < d_0 \approx 0.14216$ or $1 > p > d_1 \approx 0.85784$, $\hat{p}$ has smaller MSE, \\
+when $d_0 < p < d_1$, $p_B$ has smaller MSE,\\
+and when $p=d_0$ or $p=d_1$, both have the same MSE.
 
 When $p=0$ or $p=1$, $\hat{p}$ always has smaller MSE because it has zero MSE while $p_B$ has positive MSE.
 
@@ -239,6 +243,26 @@ This may be improper (have infinite total measure), but if it is finite, the \em
 Show that for $(a,b) = (-\infty, \infty)$, and $\theta = \mu$, for the family of $N(\mu, 1)$ densities, the Jeffreys prior density is a positive constant and therefore, the prior is improper (has total measure $+\infty$).
 \ProbE
 
+For $N(\mu, 1)$ family,
+$
+f(\theta, x) =
+(2\pi)^{-1/2}\exp\{{-(x-\theta)^2}/{2}\}
+$
+\\
+$
+\partial \log f(\theta, x) / \partial\theta = \theta-x
+$,
+$
+I(\theta) = E_\theta[(\theta-x)^2] = 1
+$,
+$
+j(\theta) = 1
+$
+is a positive constant and therefore, the Jeffreys prior is improper
+($
+\int_{-\infty}^{\infty} j(\theta) d\theta = +\infty
+$).
+
 \subsection*{(b)}
 \ProbS
 In the general case, suppose we have a parameter $\psi$ satisfying
@@ -254,15 +278,97 @@ $$
 \emph{Hint}: this is a change of variables in an integral, with use of the chain rule. If you prefer, do the special case in part (d) before this general case.
 \ProbE
 
+\newcommand{\spaceX}{\mathcal{X}}
+
+Because $h'(x)>0$ for all $x \in (u,v) \supseteq (\xi, \eta)$, the mapping $\theta = h(\psi)$ is one to one from $(\xi, \eta)$ to $(h(\xi), h(\eta))$, so (let the space of $x$ be $\spaceX$):
+$$
+\int_{h(\xi)}^{h(\eta)} j_f(\theta) d\theta =
+\int_{\xi}^{\eta} j_f(\theta) h'(\psi) d\psi =
+\int_{\xi}^{\eta} \sqrt{E_{\theta} \left[\frac{(\partial f(\theta, x) / \partial \theta)^2}{f(\theta, x)^2}\right] }h'(\psi) d\psi =
+$$
+$$
+\int_{\xi}^{\eta} h'(\psi) \sqrt{ \int_{\spaceX} \frac{(\partial f(\theta, x) / \partial \theta)^2}{f(\theta, x)} dx }d\psi =
+\int_{\xi}^{\eta} \frac{\partial \theta}{\partial \psi} \sqrt{ \int_{\spaceX} \frac{(\partial f(h(\psi), x) / \partial \psi \cdot \partial \psi / \partial \theta)^2}{f(h(\psi), x)} dx }d\psi =
+$$
+$$
+\int_{\xi}^{\eta} \sqrt{ \int_{\spaceX} \left(\frac{\partial \theta}{\partial \psi}\right)^2 \frac{(\partial g(\psi, x) / \partial \psi)^2}{ g(\psi, x) ( \partial \theta / \partial \psi)^2} dx }d\psi =
+\int_{\xi}^{\eta} \sqrt{ \int_{\spaceX} \frac{(\partial g(\psi, x) / \partial \psi)^2}{ g(\psi, x)} dx }d\psi =
+$$
+$$
+\int_{\xi}^{\eta} \sqrt{E_{\psi} \left[\frac{(\partial g(\psi, x) / \partial \psi)^2}{g(\psi, x)^2}\right] } d\psi =
+\int_{\xi}^{\eta} j_g(\psi) d\psi
+$$
+Q.E.D.
 \subsection*{(c)}
 \ProbS
 Consider the Bernoulli $(p)$ distributions for $0<p<1$, with likelihood function $p^X(1-p)^{1-X}$ where $X=0$ or $1$. Evaluate its Jeffreys prior probability density (Bickel and Doksum state what it is for a binomial distribution with general $n$). This is a density in a known family, namely what?
 \ProbE
 
+$
+g(p, X) = p^X (1-p)^{1-X}
+$
+\\
+$
+\partial \log g(p, X) / \partial p = X/p + (X-1)/(1-p)
+=(X-p)/[p(1-p)]
+$
+\\
+Because $E(X)=p$, \\
+$
+I(p) = E_p[(X-p)^2/[p(1-p)]^2]=
+Var(X)/[p(1-p)]^2 =
+1/[p(1-p)]
+$
+\\
+$
+j(p) = \sqrt{I(p)} =
+p^{-\frac{1}{2}}(1-p)^{-\frac{1}{2}} =
+p^{\frac{1}{2}-1}(1-p)^{\frac{1}{2}-1},
+0<p<1
+$
+\\
+which is a \emph{Beta} distribution $\Beta(1/2, 1/2)$.
+So after normalization, the Jeffreys prior probability density function is
+\\
+$
+\tilde{j}(p)=
+p^{-\frac{1}{2}}(1-p)^{-\frac{1}{2}}/\Beta(1/2, 1/2),
+0<p<1
+$
 \subsection*{(d)}
 \ProbS
 Suppose we consider the same distribution as in (c) but with the exponential family parameterization where $\theta = \log(p/(1-p)), p=e^{\theta}/(1+e^{\theta})$. Find explicitly the Jeffreys prior density with respect to $\theta$ (for it, part (b) would then hold for $\psi = \theta$).
 \ProbE
+
+$
+f(\theta, X) = \exp\{X\theta\} / (1+e^{\theta})
+,\quad
+\partial \log f(\theta, X) / \partial \theta = X-e^{\theta}/(1+e^\theta)
+$
+\\
+Because $E(X)=e^{\theta}/(1+e^{\theta})$,
+$
+I(\theta) = Var(X) = e^\theta / (1+e^\theta)^2
+$
+\\
+$
+j(\theta) = \sqrt{I(\theta)} = \sqrt{e^\theta}/(1+e^\theta),
+-\infty < \theta < \infty
+$
+\\
+It is easy to verify that part (b) hold for $\psi=\theta$.
+\\
+$
+C = \int_{-\infty}^{\infty} j(\theta) d\theta
+= \int_{0}^{\infty} t/(1+t^2) d\ln t^2
+= 2 \int_{0}^{\infty} 1/(1+t^2) dt
+= \pi
+$
+\\
+So after normalization, the Jeffreys prior probability density is\\
+$
+\tilde{j}(\theta) = \pi^{-1} e^{\theta/2} / (1+e^\theta)
+$
 
 \subsection*{(e)}
 \ProbS
@@ -270,4 +376,39 @@ In ``Information inequalities,'' Proposition 4, it is shown that if a family of 
 For $X_1, \dots, X_n$ i.i.d. Bernoulli $(p)$, $S_n = X_1 + \cdots + X_n$ is a sufficient statistic, why?
 Then $S_n$ has a binomial $(n, p)$ distribution. So, check that as Bickel and Doksum say, the Jeffreys prior probability density for this distribution for any $n$ is the same as for $n=1$ found in (c).
 \ProbE
+
+$
+f(p, X) = \prod_{i=1}^{n} f(p, X_i) =
+p^{S_n}(1-p)^{n-S_n}
+= g(S_n(X), p)h(X)
+$
+\\
+where
+$
+g(S_n(X), p) =
+p^{S_n}(1-p)^{n-S_n}
+,
+h(X)=1
+$,
+hence by factorization theorem, $S_n$ is a sufficient statistic.
+
+Let $I_n(p)$ and $j_n(p)$ denote the Fisher information and Jeffreys prior density for $S_n$, respectively, then
+\\
+$
+j_n(p) = \sqrt{I_n(p)}
+= \sqrt{nI_1(p)}
+= \sqrt{nI(p)}
+= \sqrt{n}j_1(p)
+= \sqrt{n / [p(1-p)]}
+$
+\\
+which differs from $j_1(p)$ just by a constant factor $\sqrt{n}$,
+so after normalization, the Jeffreys prior probability density for $S_n$ must be the same as $\tilde{j}(p)$, i.e.
+\\
+$
+\tilde{j_n}(p) = \tilde{j}(p) = 
+p^{-\frac{1}{2}}(1-p)^{-\frac{1}{2}}/\Beta(1/2, 1/2), 0<p<1
+$
+\\
+So, just as Bickel and Doksum say, the Jeffreys prior probability density for $S_n$'s distribution for any $n$ is the same as for $n = 1$ found in (c).
 \end{document}
