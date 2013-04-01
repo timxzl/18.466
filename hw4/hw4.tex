@@ -182,15 +182,38 @@ $
 $
 , so the expectation of $|\theta|$ w.r.t. the prior is infinite.
 On the other hand,\\
-\begin{align}
-\pi_{x}(\theta) =
-\pi^{-1} \frac{1}{1+\theta^2} \frac{1}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}}
+\begin{flalign}
+&\pi_{x}(\theta) =
+\frac{1}{\pi(1+\theta^2)} \frac{1}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}}
 \\
-\int_{-\infty}^{\infty} |\theta| \pi_{x}(\theta) d\theta =
-\pi^{-1} \int_{-\infty}^{\infty} \frac{1}{1+\theta^2} \frac{1}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}}
-\end{align}
+&\theta_B = \int_{-\infty}^{\infty} \theta \pi_{x}(\theta) d\theta =
+\int_{-\infty}^{\infty} \frac{\theta}{\pi(1+\theta^2)} \frac{1}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}} d\theta
+\eqnlabel{prob4:integral}
 \\
-Because
+&\leq
+\int_{-\infty}^{\infty} \frac{\theta}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}} d\theta
+\\
+&\leq
+\int_{-\infty}^{-1} \frac{\theta^2}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}} d\theta
++
+\int_{1}^{\infty} \frac{\theta^2}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}} d\theta
++
+\int_{-1}^{1} e^{-\frac{(\theta-x)^2}{2}} d\theta
+\\
+&\leq
+\int_{-\infty}^{\infty} \frac{\theta^2}{\sqrt{2\pi}} e^{-\frac{(\theta-x)^2}{2}} d\theta
++
+C
+= 1+x^2+C
+\end{flalign}
+where
+$
+C=
+\int_{-1}^{1} e^{-\frac{(\theta-x)^2}{2}} d\theta
+$
+is a finite constant given $x$.
+\\
+Because the integrand in \eqnref{prob4:integral} is a continuous function, \eqnref{prob4:integral} is integrable, and because of the inequalities shown above, $\theta_B$ exists and is finite.
 
 \section{Problem 5}
 \ProbS
