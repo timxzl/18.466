@@ -1,0 +1,21 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, graphicx, amsfonts}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhf[HLEO]{\thestudent{}}
+\fancyhf[HCEO]{\thecourse{} - Problem Set \theprob{}}
+\fancyhf[HREO]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\newcommand{\argmax}{\mathrm{argmax}}
+\newcommand\erf{\mathrm{erf}}
+\newcommand\sgn{\mathrm{sgn}}
+\newcommand{\widesim}[2][1.5]{
+  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
+}
+\newcommand\eqnlabel[1]{\label{eqn:#1}}
+\newcommand\eqnref[1]{(\ref{eqn:#1})}
+\newcommand{\Beta}{\mathcal{B}}
+\newcommand{\ProbS}{\iftrue}
+\newcommand{\ProbE}{\fi}
