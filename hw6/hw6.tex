@@ -1,0 +1,80 @@
+\def\thecourse{18.466}
+\def\thestudent{Zhilei Xu (929552018)}
+\def\theprob{4}
+\include{prelude}
+\begin{document}
+\section{Bickel and Docksum, p. 351, problem 13}
+\subsection*{(a)}
+$S_n$ have a $\chi_n^2$ distribution,
+let $S_0 = 0$, $Y_i = S_i - S_{i-1}$,
+then $\{Y_i\}_{i=1,2,\dots}$ are squares of i.i.d. $N(0,1)$ random variables.
+$S_n = n\bar{Y}_n, \mu = E(Y_i) = 1,
+\sigma^2 = Var(Y_i) = 2$.
+\\
+Let $h(x) = \sqrt{x}, h'(x) = \frac{1}{2\sqrt{x}}$,
+then by Delta-Method,\\
+$\sqrt{S_n} - \sqrt{n} =
+\sqrt{n}(\sqrt{\bar{Y}_n} - 1) =
+\sqrt{n}(h(\bar{Y}_n) - h(\mu))
+\to^{D} N(0, (h'(\mu))^2\sigma^2) = N(0, \frac{1}{2})
+$.\\
+So if $n$ is large, $\sqrt{S_n} - \sqrt{n}$ has approximately a $N(0, \frac{1}{2})$ distribution.
+
+\subsection*{(b)}
+$
+\forall x \geq 0,
+P[S_n \leq x] = P[\sqrt{S_n} \leq \sqrt{x}] =
+P[(\sqrt{S_n}-\sqrt{n}) \leq (\sqrt{x} - \sqrt{n})] \approx
+\Phi(\sqrt{2x} - \sqrt{2n})
+$
+
+\subsection*{(c)}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+& & exact & Fisher's approx. & CLT approx.\\
+$n$ & $x$ & $P[S_n \leq x]$ & $\Phi(\sqrt{2x}-\sqrt{2n})$ & $\Phi((x-n)/\sqrt{2n})$ \\
+\hline
+$n=5$ & $x=x_{0.90}=9.236$ & $0.90$ & $0.872$ & $0.910$ \\
+\cline{2-5}
+& $x=x_{0.99}=15.086$ & $0.99$ & $0.990$ & $0.999$ \\
+\hline
+$n=10$ & $x=x_{0.90}=15.987$ & $0.90$ & $0.881$ & $0.910$ \\
+\cline{2-5}
+& $x=x_{0.99}=23.209$ & $0.99$ & $0.990$ & $0.998$ \\
+\hline
+$n=25$ & $x=x_{0.90}=34.382$ & $0.90$ & $0.889$ & $0.908$ \\
+\cline{2-5}
+& $x=x_{0.99}=44.314$ & $0.99$ & $0.990$ & $0.997$ \\
+\hline
+\end{tabular}
+\\
+From the above table we can see that: \\
+1. For $x=x_{0.90}$, the CLT approximation is better (closer to the exact value) than the Fisher's approximation. CLT approximation's error are only about 0.010 or smaller while Fisher's approximation's error are more than 0.010. \\
+2. For $x=x_{0.99}$, the Fisher's approximation is better than the CLT approximation. Fisher's approximation's error are all below 0.0005, while CLT approximation's error are about 0.009, 0.008, and 0.007 for $n=5, 10, 25$. \\
+3. For both approximations, larger $n$ gives smaller error.\\
+Below is the R code for generating the table:
+\begin{lstlisting}
+n <- c(5, 5, 10, 10, 25, 25)
+q <- c(0.9, 0.99, 0.9, 0.99, 0.9, 0.99)
+x <- qchisq(q, df=n)
+exact <- pchisq(x, df=n)
+fisher <- pnorm(sqrt(2*x) - sqrt(2*n))
+clt <- pnorm((x-n)/sqrt(2*n))
+table <- data.frame(n=n, quantile=q, x=x, exact=exact, fisher=fisher, clt=clt)
+table
+   n quantile         x exact    fisher       clt
+1  5     0.90  9.236357  0.90 0.8719614 0.9098210
+2  5     0.99 15.086272  0.99 0.9901148 0.9992876
+3 10     0.90 15.987179  0.90 0.8814867 0.9096779
+4 10     0.99 23.209251  0.99 0.9903833 0.9984299
+5 25     0.90 34.381587  0.90 0.8890116 0.9077054
+6 25     0.99 44.314105  0.99 0.9904401 0.9968470
+\end{lstlisting}
+
+\section{Bickel and Docksum, p. 351, problem 14}
+
+\section{Bickel and Docksum, p. 351, problem 16}
+
+\section{Bickel and Docksum, p. 351, problem 17}
+
+\end{document}
