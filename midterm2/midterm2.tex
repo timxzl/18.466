@@ -1,0 +1,42 @@
+\def\thecourse{18.466}
+\def\thestudent{Zhilei Xu (929552018)}
+\def\theprob{Midterm 2}
+\include{prelude}
+\usepackage{titlesec, pgfplots, subcaption}
+\titleformat{\section}[runin]{\Large\bfseries}{}{}{}
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{}{}{}
+\begin{document}
+\section*{1}
+\subsection*{(a)}
+
+\section*{2}
+\subsection*{(a)}
+Figures \ref{fig:linex}(\subref{fig:linex:0.2} - \subref{fig:linex:1}) are the plots for.
+\begin{figure}
+\centering
+\foreach \i in {0.2, 0.5, 1} {
+\subcaptionbox{c=\i \label{fig:linex:\i}}{
+\begin{tikzpicture}
+  \begin{axis}[
+    xlabel={$a-\theta$},
+    %ylabel={$l(\theta, a), c=\i$},
+    xmin = -4.5,
+    xmax = 3.5,
+    xtick = {-4, -2, 0, 1, ..., 3},
+    width = 0.333\textwidth
+  ] 
+  \addplot +[mark=none] {e^(\i * x) - \i*x -1}
+  %[yshift=8pt]
+  %  node[pos=0.5] {$e^{\i(a-\theta)}-\i(a-\theta)-1$}
+  ;
+ 
+  \end{axis}
+\end{tikzpicture}
+}
+}
+\caption{plots for LINEX $l(\theta, a)$ under different $c$}
+\label{fig:linex}
+\end{figure}
+
+
+\end{document}

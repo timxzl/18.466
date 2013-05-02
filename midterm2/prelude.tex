@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+\usepackage{listings,relsize}
+\lstloadlanguages{R} 
+\lstset{language=R,basicstyle=\smaller[2],commentstyle=\rmfamily\smaller, 
+  showstringspaces=false,% 
+  xleftmargin=4ex,literate={<-}{{$\leftarrow$}}1 {~}{{$\sim$}}1} 
+%\lstset{escapeinside={(*}{*)}}   % for (*\ref{ }*) inside lstlistings (S code) 
+\usepackage{amsmath, graphicx, amsfonts}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\addtolength{\topmargin}{-0.9in}
+\addtolength{\footskip}{-1.7in}
+\addtolength{\textheight}{2.6in}
+\addtolength{\textwidth}{0.6in}
+\addtolength{\oddsidemargin}{-0.3in}
+\addtolength{\evensidemargin}{-0.3in}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhf[HLEO]{\thestudent{}}
+\fancyhf[HCEO]{\thecourse{} - \theprob{}}
+\fancyhf[HREO]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\newcommand{\argmax}{\mathrm{argmax}}
+\newcommand\erf{\mathrm{erf}}
+\newcommand\sgn{\mathrm{sgn}}
+\newcommand{\widesim}[2][1.5]{
+  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
+}
+\newcommand\eqnlabel[1]{\label{eqn:#1}}
+\newcommand\eqnref[1]{(\ref{eqn:#1})}
+\newcommand{\Beta}{\mathcal{B}}
+\newcommand{\ProbS}{\iftrue}
+\newcommand{\ProbE}{\fi}
