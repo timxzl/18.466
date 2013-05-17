@@ -548,7 +548,49 @@ There does \emph{not} exist a UMP test of
 $H_0: p_X=p_Y=0.5$
 vs.
 $H_1: p_X<p_Y, p_X \geq 0.5$.
-TODO xxx ???
+
+Suppose for some $\alpha \in (0, 1)$ there exists such a UMP level $\alpha$ test
+$\delta$ for testing $H_0: p_X=p_Y=0.5$ vs. $H_1: p_X<p_Y, p_X \geq 0.5$, then it must also be MP test for testing
+$
+H_0 
+$
+vs.
+$
+H_1': p_X=0.6, p_Y=0.75
+$
+and for testing
+$H_0$ vs.
+$
+H_1'': p_X=0.6, p_Y=0.8
+$.
+
+From part (b) we know that the MP level $\alpha$ likelihood ratio tests for the latter two test problems are \\
+$
+\phi(X, Y) = I[X\ln\frac{3}{2}+Y\ln3 > c]
+$
+and
+$
+\psi(X, Y) = I[X\ln\frac{3}{2}+Y\ln4 > d]
+$
+where $c$ and $d$ are constants determined by
+$
+P_0[X\ln\frac{3}{2}+Y\ln3 > c]
+=
+P_0[X\ln\frac{3}{2}+Y\ln4 > d]
+=\alpha
+$.
+
+By Neyman-Pearson lemma, $\delta$ must be almost same as both $\phi$ and $\psi$, so $\phi$ and $\psi$ are almost same, too. But\\
+$
+P_0[\phi(X, Y) \neq \psi(X, Y)]
+\geq
+P_0[\phi(X, Y)=1 \wedge \psi(X, Y) = 0]
+\geq
+P_0[ X\ln\frac{3}{2}+Y\ln3 > c \wedge X\ln\frac{3}{2}+Y\ln4 < d]
+>0
+$
+\\
+contradicts the fact that $\phi$ and $\psi$ are almost same. The contradiction shows that our hypothesis is wrong, so there is no UMP test of $H_0: p_X=p_Y=0.5$ vs. $H_1: p_X<p_Y, p_X \geq 0.5$.
 
 \section*{5}
 This problem is so amazing! Only after solving it did I fully understand these sentences: Such randomized tests are not used in practice. They are only used to show that with randomization, likelihood ratio tests are unbeatable no matter what the size $\alpha$ is. [Bickel \& Docksum, p. 224]
