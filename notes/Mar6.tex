@@ -1,0 +1,24 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, graphicx, amsfonts}
+\def\thestudent{Zhilei Xu (929552018)}
+\def\theprob{3}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhf[HLEO]{\thestudent}
+\fancyhf[HCEO]{18.466 - Problem Set \theprob}
+\fancyhf[HREO]{Page \thepage\ of \pageref{LastPage}}
+\renewcommand\headrulewidth{0.4pt}
+\newcommand\erf{\textrm{erf}}
+\newcommand\sgn{\textrm{sgn}}
+\newcommand{\widesim}[2][1.5]{
+  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
+}
+\newcommand\eqnlabel[1]{\label{eqn:#1}}
+\newcommand\eqnref[1]{(\ref{eqn:#1})}
+\newcommand{\Beta}{\mathcal{B}}
+\begin{document}
+\verb|18.443 ../~rmd/443/regression.pdf|
+
+\end{document}

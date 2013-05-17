@@ -1,25 +1,7 @@
-\documentclass[11pt]{article}
-\usepackage{amsmath, graphicx, amsfonts}
+\def\thecourse{18.466}
 \def\thestudent{Zhilei Xu (929552018)}
 \def\theprob{4}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhf[HLEO]{\thestudent}
-\fancyhf[HCEO]{18.466 - Problem Set \theprob}
-\fancyhf[HREO]{Page \thepage\ of \pageref{LastPage}}
-\renewcommand\headrulewidth{0.4pt}
-\newcommand\erf{\textrm{erf}}
-\newcommand\sgn{\textrm{sgn}}
-\newcommand{\widesim}[2][1.5]{
-  \mathrel{\overset{#2}{\scalebox{#1}[1]{$\sim$}}}
-}
-\newcommand\eqnlabel[1]{\label{eqn:#1}}
-\newcommand\eqnref[1]{(\ref{eqn:#1})}
-\newcommand{\Beta}{\mathcal{B}}
-\newcommand{\ProbS}{\iftrue}
-\newcommand{\ProbE}{\fi}
+\include{prelude}
 \begin{document}
 \section{Bickel and Docksum, p. 197, problem 2}
 \ProbS
